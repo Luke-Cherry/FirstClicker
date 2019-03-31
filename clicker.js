@@ -1,3 +1,32 @@
+
+var duckchosen = 0;
+
+function duckChoose (num) {
+    switch(num) {
+        case 1:
+            document.getElementById("chooseDuck").style.display = "none";
+            document.getElementById("newDuck").style.display = "block";
+            document.getElementById("mainDuckImg").src="pics\\duck1.jpg";
+            break;
+        case 2:
+            document.getElementById("chooseDuck").style.display = "none";
+            document.getElementById("newDuck").style.display = "block";
+            document.getElementById("mainDuckImg").src="pics\\duck2.png";
+            break;
+        case 3:
+        document.getElementById("chooseDuck").style.display = "none";
+        document.getElementById("newDuck").style.display = "block";
+        document.getElementById("mainDuckImg").src="pics\\duck3.jpg";
+            break;
+    }
+
+}
+
+
+
+
+
+/*
 var counter = 28;
 var cash = 28;
 var u50 = false;
@@ -36,3 +65,4 @@ function unlock50 () {
     document.getElementById("u50").style.display = "block";
     document.getElementById("upgradetxt").style.display = "block";  
 }
+*/

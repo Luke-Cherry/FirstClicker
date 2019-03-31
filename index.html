@@ -1,11 +1,36 @@
 
 <!DOCTYPE html>
 <html>
-
+<link href="style.css" rel="stylesheet" type="text/css">
 
 <div class="main">
-<h1>Coding Game</h1>
+<h1>A Ducks Life</h1>
 
+<div id = "chooseDuck">
+<div class = "row">
+        <div class="column">
+                <img id="duck1" src="pics\duck1.jpg" alt="GreenDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(1)">
+              </div>
+              <div class="column">
+                <img id="duck2" src="pics\duck2.png" alt="BlueDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(2)">
+              </div>
+              <div class="column">
+                <img id="duck3" src="pics\duck3.jpg" alt="YellowDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(3)">
+              </div>
+</div>
+<p>After years of wanting your very own pet duck the day has finally come.</p>
+<p>You arrive at the pet store and there are 3 little ducklings which are desperate for a new owner.</p>
+<p><b>Please choose your duck</b></p>
+</div>
+
+<div id = "newDuck" style="display:none">
+    <div id = "mainDuck">
+        <img id="mainDuckImg" src="pics\duck1.jpg" style="width: 50%; cursor:pointer;" onclick="duckClicked()">
+    </div>
+
+</div>
+
+<!--
 <h2 id="count">Times clicked: 0</h2>
 <h3 id="cash">Total cash: £0</h3>
 
@@ -24,6 +49,7 @@
 
 </div>
 
+-->
 <script src="clicker.js"></script>
 </html>
 
