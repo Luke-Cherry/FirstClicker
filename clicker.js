@@ -1,5 +1,5 @@
-var counter = 38;
-var cash = 38;
+var counter = 28;
+var cash = 28;
 var u50 = false;
 
 
