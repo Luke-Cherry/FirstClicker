@@ -9,23 +9,33 @@
 <div id = "chooseDuck">
 <div class = "row">
         <div class="column">
-                <img id="duck1" src="pics\duck1.jpg" alt="GreenDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(1)">
+                <img id="duck1" src="pics\duck1.jpg" alt="GreenDuck" style="width:100%; cursor:pointer; padding-top: 10px;" onclick="duckChoose(1)">
               </div>
               <div class="column">
                 <img id="duck2" src="pics\duck2.png" alt="BlueDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(2)">
               </div>
               <div class="column">
-                <img id="duck3" src="pics\duck3.jpg" alt="YellowDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(3)">
+                <img id="duck3" src="pics\duck3.jpg" alt="YellowDuck" style="width:100%; cursor:pointer; padding-top: 10px;" onclick="duckChoose(3)">
               </div>
 </div>
+
 <p>After years of wanting your very own pet duck the day has finally come.</p>
 <p>You arrive at the pet store and there are 3 little ducklings which are desperate for a new owner.</p>
-<p><b>Please choose your duck</b></p>
+<p><b>Please choose your duck!</b></p>
 </div>
 
 <div id = "newDuck" style="display:none">
     <div id = "mainDuck">
-        <img id="mainDuckImg" src="pics\duck1.jpg" style="width: 50%; cursor:pointer;" onclick="duckClicked()">
+        <p id="dName2" style="display:none;">Test</p>
+        <img id="mainDuckImg" src="pics\duck1.jpg" style="cursor:pointer;" onclick="duckClicked()">
+    </div>
+    <div id="nameDuck">
+        <p>You are now the proud owner of your new litte friend.</p>
+        <p>She didn't come with a name, what would you like to call her?</p>
+        <form>
+            <input type="text" name="dname" id="dName">
+            <input type="button" value="Choose" onclick="duckNamed()">
+        </form>
     </div>
 
 </div>

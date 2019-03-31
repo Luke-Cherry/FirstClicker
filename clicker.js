@@ -1,5 +1,6 @@
 
 var duckchosen = 0;
+var duckName = "123";
 
 function duckChoose (num) {
     switch(num) {
@@ -20,6 +21,13 @@ function duckChoose (num) {
             break;
     }
 
+}
+
+function duckNamed () {
+    duckName = document.getElementById("dName").value;
+    console.log(duckName);
+    document.getElementById("dName2").innerHTML = duckName;
+    document.getElementById("dName2").style.display = "block";
 }
 
 
