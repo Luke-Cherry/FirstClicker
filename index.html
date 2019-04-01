@@ -18,6 +18,17 @@
                 <img id="duck3" src="pics\duck3.jpg" alt="YellowDuck" style="width:100%; cursor:pointer; padding-top: 10px;" onclick="duckChoose(3)">
               </div>
 </div>
+<div class = "row">
+    <div class="column1">
+            <p class="ddesctext" style="margin: 0;">This duck is a nice duck</p>
+          </div>
+          <div class="column1">
+            <p class="ddesctext" style="margin: 0;">This duck is friendly</p>
+          </div>
+          <div class="column1">
+            <p class="ddesctext" style="margin: 0;">This duck is looking for a forever home</p>
+          </div>
+</div>
 
 <p>After years of wanting your very own pet duck the day has finally come.</p>
 <p>You arrive at the pet store and there are 3 little ducklings which are desperate for a new owner.</p>
@@ -27,7 +38,7 @@
 <div id = "newDuck" style="display:none">
     <div id = "mainDuck">
         <p id="dName2" style="display:none;">Test</p>
-        <img id="mainDuckImg" src="pics\duck1.jpg" style="cursor:pointer;" onclick="duckClicked()">
+        <img id="mainDuckImg" src="pics\duck1.jpg" style="cursor:pointer;">
     </div>
     <div id="nameDuck">
         <p>You are now the proud owner of your new litte friend.</p>
@@ -37,6 +48,18 @@
             <input type="button" value="Choose" onclick="duckNamed()">
         </form>
     </div>
+</div>
+
+<div id = "eggInfo">
+<p id="totalEggs">Total eggs: 0/10</p>
+<p id="totalCash">Cash: £0.00</p>
+<p id="eggPrice">Price per egg: £0.10</p>
+
+</div>
+
+<div id = "buttons">
+    <button id="sellEggs" class="button" onclick="sellEggs()">Sell Eggs</button> 
+
 
 </div>
 
