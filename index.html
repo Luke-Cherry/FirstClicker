@@ -1,21 +1,32 @@
 
 <!DOCTYPE html>
+
 <html>
+
 <link href="style.css" rel="stylesheet" type="text/css">
 
+<head>
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <title>A Ducks Life</title>
+</head>
+
 <div class="main">
+<div class="container">
+<header>
 <h1>A Ducks Life</h1>
+</header>
+
 
 <div id = "chooseDuck">
 <div class = "row">
         <div class="column">
-                <img id="duck1" src="pics\duck1.jpg" alt="GreenDuck" style="width:100%; cursor:pointer; padding-top: 10px;" onclick="duckChoose(1)">
+                <img id="duck1" src="pics\duck1.jpg" alt="GreenDuck" style="width:100%; cursor:pointer; padding-top: 10px;" onclick="duckChoose(0)">
               </div>
               <div class="column">
-                <img id="duck2" src="pics\duck2.png" alt="BlueDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(2)">
+                <img id="duck2" src="pics\duck2.png" alt="BlueDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(1)">
               </div>
               <div class="column">
-                <img id="duck3" src="pics\duck3.jpg" alt="YellowDuck" style="width:100%; cursor:pointer; padding-top: 10px;" onclick="duckChoose(3)">
+                <img id="duck3" src="pics\duck3.jpg" alt="YellowDuck" style="width:100%; cursor:pointer; padding-top: 10px;" onclick="duckChoose(2)">
               </div>
 </div>
 <div class = "row">
@@ -35,54 +46,51 @@
 <p><b>Please choose your duck!</b></p>
 </div>
 
-<div id = "newDuck" style="display:none">
-    <div id = "mainDuck">
-        <p id="dName2" style="display:none;">Test</p>
-        <img id="mainDuckImg" src="pics\duck1.jpg" style="cursor:pointer;">
-    </div>
-    <div id="nameDuck">
-        <p>You are now the proud owner of your new litte friend.</p>
-        <p>She didn't come with a name, what would you like to call her?</p>
-        <form>
-            <input type="text" name="dname" id="dName">
-            <input type="button" value="Choose" onclick="duckNamed()">
-        </form>
-    </div>
-</div>
+  <div id = "mainDuck" style="display:none">
+      <p id="dName2" style="display:none;">Test</p>
+      <img id="mainDuckImg" src="pics\duck1.jpg" style="cursor:pointer;">
+  </div>
+  <div id="nameDuck" style="display:none">
+      <p>You are now the proud owner of your new little friend.</p>
+      <p>She didn't come with a name, what would you like to call her?</p>
+      <form>
+          <input type="text" name="dname" id="dName">
+          <input type="button" value="Choose" onclick="duckNamed()">
+      </form>
+  </div>
 
 <div id = "eggInfo">
-<p id="totalEggs">Total eggs: 0/10</p>
 <p id="totalCash">Cash: £0.00</p>
+<p id="totalEggs">Total eggs: 0/10</p>
+<progress value = "0" max = "100" id="totalEggsProg"></progress>
+
 <p id="eggPrice">Price per egg: £0.10</p>
 
 </div>
 
-<div id = "buttons">
-    <button id="sellEggs" class="button" onclick="sellEggs()">Sell Eggs</button> 
 
-
-</div>
-
-<!--
-<h2 id="count">Times clicked: 0</h2>
-<h3 id="cash">Total cash: £0</h3>
-
-
-<button id="button">Get cash (£1)</button>
-
-</div>
-<hr>
-<div class="upgrades" id="upgradetxt" style="display:none;">
-    <h2>Upgrades:</h2>
-    <div class="u50" id="u50" style="display:none;">
-        <button id="u50button">Accountant: £50</button> 
-        <p style="display: inline-block; margin:0;">Test</p>
-    </div>
-
+<div id ="buttons" style="display:none">
+  <button id="sellEggs" class="button" onclick="sellEggs()">Sell Eggs (£0.00)</button>
+  <label for="sellEggs" id="sellEggsl">Total eggs sold: 0</label>
+      
+  <br>
+  <p><u>Upgrades:</u></p>
+  <button id="upgradeStorage" class="button" onclick="upgradeStorage()">Upgrade Storage to [20] (£1.00)</button>
+  
+  <button id="eggCollector" class="button" onclick="eggCollectorOn()">Egg Collector (£10.00) (0)</button> 
+  <label for="eggCollector" id="eggCollectorl">Eggs collected per second: 0</label>
 
 </div>
 
--->
+<div id="developerOptions">
+  <p>Game work in progress, thanks for trying it out!</p>
+  <p>Currently only coded in are unlimited egg collectors which increase in price, storage up to 2500</p>  
+  <button id="devGetCash" onclick="devGetCash()">Get Cash (£100)</button>
+</div>
+
+
+</div>
+</div>
 <script src="clicker.js"></script>
 </html>
 
