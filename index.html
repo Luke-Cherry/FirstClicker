@@ -3,7 +3,7 @@
 
 <html>
 
-<link href="style.css?version=1.01" rel="stylesheet" type="text/css">
+<link href="style.css?version=1.02" rel="stylesheet" type="text/css">
 
 <head>
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
@@ -77,29 +77,54 @@
 
 
 <div id ="buttons" style="display:none">
-  <button id="sellEggs" class="button" onclick="sellEggs()">Sell Eggs (£0.00)</button>
-  <label for="sellEggs" id="sellEggsl">Total eggs sold: 0</label>
-      
-  <br>
+    <button id="sellEggs" class="button" onclick="sellEggs()" title="Test">Sell Eggs (£0.00)</button>
+    <label for="sellEggs" id="sellEggsl">Total eggs sold: 0</label>
+
+  <button id="eggClickers" class="button" onclick="eggClickers()">Clicks per Egg (£1.00) (0)</button> 
+  <label for="eggClickers" id="eggClickersl">Eggs per click: 0</label>
+
+  <span class="tooltip">
+    <button id="eggCollector" class="button" onclick="eggCollectorOn()">Egg Collector (£10.00) (0)</button> 
+    <span class="tooltiptext">Automatically collects 1 egg a second.</span> 
+  </span>
+    <label for="eggCollector" id="eggCollectorl">Eggs collected per second: 0</label>
+
+    <!--
   <p><u>Upgrades:</u></p>
   <button id="upgradeStorage" class="button" onclick="upgradeStorage()">Upgrade Storage to [20] (£1.00)</button>
-  
-  <button id="eggCollector" class="button" onclick="eggCollectorOn()">Egg Collector (£10.00) (0)</button> 
-  <label for="eggCollector" id="eggCollectorl">Eggs collected per second: 0</label>
+-->
 
 </div>
+
+<div id ="upgrades" style="display:none">
+  <p id="upgradeText"><u>Upgrades:</u></p>
+  
+  <span class="tooltip">
+    <button id="upgradeStorage" class="button" onclick="upgradeStorage()">Upgrade Storage to [20] (£1.00)</button> 
+    <span class="tooltiptext">Upgrade your Ducks house to store more eggs.</span>
+  </span>
+
+  <span class="tooltip">
+    <button id="upgradeEgg" class="button" onclick="upgradeEgg()">Improve Egg Value (£100.00)</button> 
+    <span class="tooltiptext">Increase your ducks happiness causing eggs laid to increase in value (+£0.05)</span>
+  </span>
+
+</div>
+
 
 <div id="developerOptions">
   <p>Game work in progress, thanks for trying it out!</p>
   <p>Currently only coded in are unlimited egg collectors which increase in price, storage up to 2500</p>  
   <button id="devGetCash" onclick="devGetCash()">Get Cash (£100)</button>
   <button id="devsaveGame" onclick="devSaveGame()">Save Game</button>
+
+  <button id="devautosaveGame" onclick="devautoSave()">Autosave (ON)</button>
   <button id="devReset" onclick="devReset()">Reset</button>
 </div>
 
 
 </div>
 </div>
-<script src="clicker.js?version=1.01"></script>
+<script src="clicker.js?version=1.02"></script>
 </html>
 

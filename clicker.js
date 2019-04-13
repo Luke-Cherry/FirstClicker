@@ -1,16 +1,6 @@
-
-/*
-gameData.duckchosen = 0; //1-3 of the 3 ducks which can be chosen
-gameData.duckName = "";
-gameData.eggs = 0; //Total number of eggs
-gameData.eggsSold = 0; //Total number of eggs sold
-gameData.storage = 10; //Total number of eggs that can be stored
-gameData.cost = 0.1; //Cost each egg sells for
-gameData.click_increment = 1; //How many eggs per click
-gameData.cash = 0; //How much cash
-*/
-
+//Default values for the variables in gameData used for NEW game or RESET game.
 var defaultValues = {
+    autosave: 1,
     duckchosen: 0,
     duckName: "",
     eggs: 0,
@@ -18,23 +8,47 @@ var defaultValues = {
     storage: 10,
     currentStorage: 0,
     cost: 0.1,
+    cost_increase_cost: 100,
+    cost_increase_num: 1,
+    cash: 0,
+    eggcollectorNum: 0,
+    eggcollectorCost: 10,
     click_increment: 1,
-    cash: 0
+    click_increment_cost: 1
 }
 
 var gameData = {
+//Autosaves
+    autosave: 1,
+//Stores data for which duck chosen [1-3], and the ducks name in String format.
     duckchosen: 0,
     duckName: "",
+
+//Stores the no. of eggs and eggsSold = total eggs sold lifetime.
     eggs: 0,
     eggsSold: 0,
+
+//Stores the current maximum storage, and currentStorage is which part of the array storageNums[] reads from.
     storage: 10,
     currentStorage: 0,
+
+//Value of each egg, cost of next upgrade, current upgrades
     cost: 0.1,
+    cost_increase_cost: 100,
+    cost_increase_num: 1,
+
+//Current total cash
+    cash: 0,
+
+//Shows no. of eggCollectors + the cost of each eggCollector (increases with each purchase).
+    eggcollectorNum: 0,
+    eggcollectorCost: 10,
+
     click_increment: 1,
-    cash: 0
+    click_increment_cost: 1
 }
 
-var duckImages = ["pics\\duck1.jpg", "pics\\duck2.png", "pics\\duck3.jpg"]
+var duckImages = ["pics\\duck1.jpg", "pics\\duck2.png", "pics\\duck3.jpg"];
 
 var storageNums = [
     { cost: 1, amount: 20 },
@@ -50,17 +64,30 @@ var storageNums = [
     { cost: 190, amount: 1150 },
     { cost: 340, amount: 1700 },
     { cost: 610, amount: 2500 }
-]
+];
 
-var EggCollector = {
-    eggcollectorNum: 0,
-    eggcollectorCost: 10
-}
-
-var savedGame = JSON.parse(localStorage.getItem("duckgameSave"))
+//Loads GAME + Checks and updates any new variables
+var savedGame = JSON.parse(localStorage.getItem("duckgameSave"));
 
 if (savedGame !== null) {
   gameData = savedGame;
+  
+  if (typeof gameData.duckchosen === "undefined") gameData.duckchosen = defaultValues.duckchosen;
+  if (typeof gameData.duckName === "undefined") gameData.duckName = defaultValues.duckName;
+  if (typeof gameData.eggs === "undefined") gameData.eggs = defaultValues.eggs;
+  if (typeof gameData.eggsSold === "undefined") gameData.eggsSold = defaultValues.eggsSold;
+  if (typeof gameData.storage === "undefined") gameData.storage = defaultValues.storage;
+  if (typeof gameData.currentStorage === "undefined") gameData.currentStorage = defaultValues.currentStorage;
+  if (typeof gameData.cost === "undefined") gameData.cost = defaultValues.cost;
+  if (typeof gameData.cost_increase_cost === "undefined") gameData.cost_increase_cost = defaultValues.cost_increase_cost;
+  if (typeof gameData.cash === "undefined") gameData.cash = defaultValues.cash;
+  if (typeof gameData.eggcollectorNum === "undefined") gameData.eggcollectorNum = defaultValues.eggcollectorNum;
+  if (typeof gameData.eggcollectorCost === "undefined") gameData.eggcollectorCost = defaultValues.eggcollectorCost;
+  if (typeof gameData.click_increment === "undefined") gameData.click_increment = defaultValues.click_increment;
+  if (typeof gameData.click_increment_cost === "undefined") gameData.click_increment_cost = defaultValues.click_increment_cost;
+  if (typeof gameData.cost_increase_num === "undefined") gameData.cost_increase_num = defaultValues.cost_increase_num;
+  if (typeof gameData.autosave === "undefined") gameData.autosave = defaultValues.autosave;
+  
   duckChoose(gameData.duckchosen);
   duckNamed(gameData.duckName);
   duckUpdate();
@@ -93,6 +120,7 @@ function duckNamed (dName2) {
     document.getElementById("nameDuck").style.display = "none";
     document.getElementById("mainDuckImg").setAttribute("onClick", "duckClicked()");
     document.getElementById("buttons").style.display = "block";
+    document.getElementById("upgrades").style.display = "block";
     duckUpdate();
 }
 
@@ -113,10 +141,20 @@ function duckUpdate () {
     document.getElementById("totalEggs").innerHTML = "Total eggs: " + gameData.eggs + "/" + gameData.storage;
     document.getElementById("totalCash").innerHTML = "Cash: £" + gameData.cash.toFixed(2);
     document.getElementById("totalEggsProg").value = 100 * (gameData.eggs/gameData.storage);
+    document.getElementById("eggPrice").innerHTML = "Price per egg: £" + gameData.cost.toFixed(2);
+    
+    
     document.getElementById("sellEggs").innerHTML = "Sell Eggs (£" + (gameData.eggs * gameData.cost).toFixed(2) + ")";
     document.getElementById("sellEggsl").innerHTML = "Total eggs sold: " + gameData.eggsSold; 
-    document.getElementById("eggCollector").innerHTML = "Egg Collector (£" + EggCollector.eggcollectorCost.toFixed(2)+ ") (" + EggCollector.eggcollectorNum + ")";
-    document.getElementById("eggCollectorl").innerHTML = "Eggs collected per second: " + EggCollector.eggcollectorNum; 
+    
+    document.getElementById("eggCollector").innerHTML = "Egg Collector (£" + gameData.eggcollectorCost.toFixed(2)+ ") (" + gameData.eggcollectorNum + ")";
+    document.getElementById("eggCollectorl").innerHTML = "Eggs collected per second: " + gameData.eggcollectorNum; 
+    
+    document.getElementById("eggClickers").innerHTML = "Clicks per Egg (£" + gameData.click_increment_cost.toFixed(2) + ") (" + gameData.click_increment + ")";
+    document.getElementById("eggClickersl").innerHTML = "Eggs per click: "+ gameData.click_increment; 
+    
+    document.getElementById("upgradeEgg").innerHTML = "Improve Egg Value (£" + gameData.cost_increase_cost.toFixed(2) + ")";
+    
     duckstoragebUpdate();
     buttonUpdate();
 }
@@ -133,11 +171,25 @@ function buttonUpdate () {
     }
 
     //eggCollector Updater
-    let y = EggCollector.eggcollectorCost;
+    let y = gameData.eggcollectorCost;
     if (gameData.cash >= y) {
         document.getElementById("eggCollector").style.backgroundColor = "#4CAF50";
     } else if (gameData.cash < y) {
         document.getElementById("eggCollector").style.backgroundColor = "#af4c4c";
+    }
+
+    //eggClickers Updater
+    if (gameData.cash >= gameData.click_increment_cost) {
+        document.getElementById("eggClickers").style.backgroundColor = "#4CAF50";
+    } else if (gameData.cash < gameData.click_increment_cost) {
+        document.getElementById("eggClickers").style.backgroundColor = "#af4c4c";
+    }
+
+    //eggCost Updator
+    if (gameData.cash >= gameData.cost_increase_cost) {
+        document.getElementById("upgradeEgg").style.backgroundColor = "#4CAF50";
+    } else if (gameData.cash < gameData.cost_increase_cost) {
+        document.getElementById("upgradeEgg").style.backgroundColor = "#af4c4c";
     }
 }
 
@@ -170,44 +222,62 @@ function upgradeStorage() {
     }
 }
     
-    
-    /*
-    if (gameData.cash >= storageNums.storageCost[x] && storageNums.storageCost[x] != 9999) {
-        gameData.storage = storageNums.storageAmount[x];
-        gameData.cash -= storageNums.storageCost[x];
-        storageNums.storageStage++;
-        duckUpdate();
-    }
-} */
 
 //Main game loop that happens every 1 second
 var mainGameLoop = window.setInterval(function() {
-    if (EggCollector.eggcollectorNum > 0) {
+    if (gameData.eggcollectorNum > 0) {
     collectEggs()
     } 
     }, 1000)
 
 //Function that turns egg collector on and handles buying new egg collectors, price increases by 10 x 1.1^(no. owned)
 function eggCollectorOn () {
-    let x = EggCollector.eggcollectorNum;
-    let y = EggCollector.eggcollectorCost;
+    let x = gameData.eggcollectorNum;
+    let y = gameData.eggcollectorCost;
     if (x == 0 && gameData.cash >= y) {
-        EggCollector.eggcollectorNum = 1;
+        gameData.eggcollectorNum = 1;
         gameData.cash -= 10;
-        EggCollector.eggcollectorCost = 10 * Math.pow(1.1, x+1); 
+        gameData.eggcollectorCost = 10 * Math.pow(1.1, x+1); 
         duckUpdate();
     } else if (x > 0 && gameData.cash >= y) {
-        EggCollector.eggcollectorNum++;
+        gameData.eggcollectorNum++;
         gameData.cash -= y;
-        EggCollector.eggcollectorCost = 10 * Math.pow(1.1, x+1); 
+        gameData.eggcollectorCost = 10 * Math.pow(1.1, x+1); 
         duckUpdate();
     }
-    console.log(EggCollector.eggcollectorNum);
+    console.log(gameData.eggcollectorNum);
+}
+
+//Increases amount of eggs on click
+function eggClickers() {
+    let x = gameData.click_increment_cost;
+    let y = gameData.click_increment;
+    if (x <= gameData.cash && y < 100) {
+        gameData.click_increment++;
+        gameData.cash -= x;
+        gameData.click_increment_cost = 1 * Math.pow(1.4, y);
+        duckUpdate();
+    }
+}
+
+//Upgrades the value of the egg
+function upgradeEgg() {
+    let x = gameData.cost_increase_cost;
+    let y = gameData.cost;
+    let z = gameData.cost_increase_num;
+    if (x <= gameData.cash) {
+        gameData.cost += 0.05;
+        gameData.cash -= x;
+        gameData.cost_increase_cost = 100 * Math.pow(1.4, z);
+        gameData.cost_increase_num++;
+        duckUpdate();
+    }
+
 }
 
 //Collects eggs based on how many eggCollectors you have
 function collectEggs () {
-    let x = EggCollector.eggcollectorNum;
+    let x = gameData.eggcollectorNum;
     if (gameData.eggs + x <= gameData.storage) {
         gameData.eggs += x;
         duckUpdate();
@@ -217,6 +287,8 @@ function collectEggs () {
     }
 }
 
+
+//Dev Options
 function devGetCash() {
     gameData.cash += 100;
     duckUpdate();
@@ -232,5 +304,20 @@ function devReset() {
     duckUpdate();
 }
 
+function devautoSave() {
+    if (gameData.autosave == 1) {
+        gameData.autosave = 0;
+        document.getElementById("devautosaveGame").innerHTML = "Autosave (OFF)";
+    } else if (gameData.autosave == 0) {
+        gameData.autosave = 1;
+        document.getElementById("devautosaveGame").innerHTML = "Autosave (ON)";
+    }
+}
 
+var saveGameLoop = window.setInterval(function() {
+    if (gameData.autosave == 1) {
+    localStorage.setItem('duckgameSave', JSON.stringify(gameData));
+    console.log("Autosaved")    
+    }
+  }, 15000)
 

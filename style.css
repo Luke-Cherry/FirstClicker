@@ -22,7 +22,7 @@
     grid-template-areas: 
       "header header header"
       "mainDuck buttons eggInfo"
-      "footer1 footer1 footer";
+      "upgrades footer1 footer";
   }
 
 
@@ -140,6 +140,18 @@
     text-align: center;
   }
 
+  #upgrades {
+    padding: 10px;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+
+
+
   label {
     font-family: Verdana,sans-serif;
     font-size: 1vw;
@@ -152,4 +164,35 @@
     background-color: #deeaee;
     padding: 10px 2px;
     margin: 5px;
+  }
+
+
+  #upgradeText {
+    margin: 0 0 5px 0;
+  }
+
+  .tooltip {
+    position: relative;
+  }
+  
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    width: 70%;
+    background-color: #deeaee;
+    color: black;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 190%;
+    left: 50%;
+    margin-left: -35%;
+  }
+  
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
   }
