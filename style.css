@@ -5,6 +5,10 @@
   p {
     font-family: Verdana,sans-serif;
   }
+
+  h1 {
+    font-family: Verdana,sans-serif;
+  }
   
   .row {
     display: flex;
@@ -22,7 +26,7 @@
     grid-template-areas: 
       "header header header"
       "mainDuck buttons eggInfo"
-      "upgrades footer1 footer";
+      "upgrades stats footer";
   }
 
 
@@ -150,6 +154,15 @@
     margin: 0 auto;
   }
 
+  #stats {
+    padding: 10px;
+    border-style: solid;
+    border-radius: 5px;
+    background-color: white;
+    text-align: center;
+  }
+
+
 
 
   label {
@@ -196,3 +209,14 @@
     visibility: visible;
     opacity: 1;
   }
+
+  #sellEggs {
+    background-color: #4CAF50;
+    border: 1px solid;
+    color: white;
+    padding: 3% 3%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.4vw;
+    width: 95%;
+}
