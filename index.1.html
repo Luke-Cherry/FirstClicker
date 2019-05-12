@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<link href="style.1.css?version=1.03" rel="stylesheet" type="text/css">
+
+
+<head>
+  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <title>A Ducks Life</title>
+</head>
+
+<div class="navbar">
+
+  <img src="pics/duck1.png" alt="Duck Logo">
+  <h1>A Ducks Life</h1>
+    
+  <div class="dropdown">
+    <button class="dropdownbtn">
+      <i class="fa fa-list-ul"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#">Stats</a>
+      <a href="#">Options</a>
+      <a href="#">Help</a>
+    </div>
+  </div>
+</div>
+
+
+<div id = "chooseDuck">
+  <h2>Welcome to A Ducks Life!</h2>
+  <h3>One night the biggest storm of the century hits your village, the next day three little ducklings are found stranded without a mother, you are able to adopt one of these ducklings. Please choose below.</h3>
+  
+  <div id="duckCards">
+
+    <div class="card" onclick="duckChoose(0)">
+      <img src="pics/duck1.png" alt="Avatar" style="width:100%">
+      <div class="container">
+        <h4><b>Yellow Duck</b></h4> 
+        <p>This duck is a nice duck</p> 
+      </div>
+    </div>
+
+    <div class="card" onclick="duckChoose(1)">
+        <img src="pics/duck2.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4><b>Blue Duck</b></h4> 
+          <p>This duck is friendly</p> 
+        </div>
+      </div>
+
+      <div class="card" onclick="duckChoose(2)">
+          <img src="pics/duck3.png" alt="Avatar" style="width:100%">
+          <div class="container">
+            <h4><b>Pink Duck</b></h4> 
+            <p>This duck is looking for a forever home</p> 
+          </div>
+        </div>
+
+  </div>  
+</div>
+
+<div id="flexGrid">
+
+<div id = "mainDuck" style="display:none">
+    <p id="dName2" style="display:none;">Test</p>
+    <img id="mainDuckImg" src="pics/duck1.png" style="cursor:pointer;">
+</div>
+
+<div id="nameDuck" style="display:none">
+    <p>You are now the proud owner of your new little friend.</p>
+    <p>She didn't come with a name, what would you like to call her?</p>
+        <input type="text" name="dname" id="dName">
+        <input type="button" value="Choose" onclick="duckNamed()">
+</div>
+
+</div>
+
+<button id="devReset" onclick="devReset()">Reset</button>
+
+
+<script src="clicker.js?version=1.03"></script>
