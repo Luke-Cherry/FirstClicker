@@ -128,7 +128,7 @@ body {
 
 #flexGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 350px 1fr;
   grid-template-rows: auto auto;
   grid-gap: 10px;
   grid-template-areas: 
@@ -165,4 +165,99 @@ body {
   position: absolute;
   bottom: -5px;
   left: 12px;
+}
+
+#eggInfo {
+  grid-area: eggInfo;
+  text-align: center;
+}
+
+#eggInfo button {
+  width: 230px;
+  margin: auto;
+  display: block;
+  background-color: white;
+  border: 4px solid;
+  text-align: center;
+  padding: 10px 5px;
+  text-decoration: none;
+  font-size: 1.5em;
+  font-weight: 900;
+  border-radius: 5px;
+}
+
+#eggInfo button:hover {
+  box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+#upgrades {
+  grid-area: upgrades;
+  border: solid yellow;
+  border-width: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+#upgrades h1 {
+  margin: 5px;
+  color: #25a8f9;
+}
+
+#upgrades h2 {
+  margin: 5px;
+  color: #57b1e8;
+  border-bottom: solid;
+}
+
+#buttons {
+  grid-area: buttons;
+}
+
+#cash {
+  display: flex;
+    align-items: center;
+    margin: auto;
+    background: #05D36B;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 15px;
+}
+
+#cash i {
+  color: #006733;
+  padding: 10px 30px 10px 10px;
+  font-size: 2em;
+}
+
+#cash p {
+  font-size: 1.5em;
+  margin: 10px 30px 10px 10px;
+  color: #006733;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 70%;
+  background-color: #deeaee;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 190%;
+  left: 50%;
+  margin-left: -35%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }

@@ -89,6 +89,20 @@
     position: relative;
   }
 
+  #sellEggs {
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.4vw;
+    width: 80%;
+    margin: auto;
+    display: block;
+}
+
+  #sellEggsl {
+    text-align: center;
+    
+  }
+
   #dName2 {
     width: fit-content;
     display: block;
@@ -123,6 +137,11 @@
   #developerOptions {
     grid-area: footer;
     border: 1px solid black;
+    padding: 5px;
+  }
+
+  #developerOptions p {
+    margin-block-start: 0px;
   }
 
   .button {
@@ -209,14 +228,3 @@
     visibility: visible;
     opacity: 1;
   }
-
-  #sellEggs {
-    background-color: #4CAF50;
-    border: 1px solid;
-    color: white;
-    padding: 3% 3%;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.4vw;
-    width: 95%;
-}
