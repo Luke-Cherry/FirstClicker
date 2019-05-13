@@ -211,24 +211,27 @@ body {
 }
 
 #upgrades .row {
-
+  display: flex;
 }
 
 #upgrades .leftCol {
-  display: inline-block;
-  width: 45%;
+  display: block;
+  width: 30%;
+  margin-top: 18px;
 }
 
 #upgrades .rightCol {
-  display: inline-block;
-  width: 45%;
-  font-size: 0.75em;
+  display: block;
+  width: 70%;
+  font-size: 1em;
   text-align: left;
+  white-space: normal;
 }
+
 #upgrades .leftCol button {
   align-items: center;
   margin: auto;
-  background: #05D36B;
+  background: #FFD256;
   padding: 10px;
   width: fit-content;
   border-radius: 5px;
@@ -236,13 +239,33 @@ body {
 }
 
 #upgrades .leftCol button i {
-  padding-right: 10px;
   font-size: 1em;
+  color: #846205;
 }
 
 #buttons {
   grid-area: buttons;
+  border: solid #57b1e8;
+  border-width: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
 }
+
+
+#buttons h1 {
+  margin: 5px;
+  color: #25a8f9;
+}
+
+#buttons h2 {
+  margin: 5px;
+  color: #57b1e8;
+  border-bottom: solid;
+}
+
+
+
 
 #cash {
   display: flex;
