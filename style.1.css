@@ -210,6 +210,36 @@ body {
   border-bottom: solid;
 }
 
+#upgrades .row {
+
+}
+
+#upgrades .leftCol {
+  display: inline-block;
+  width: 45%;
+}
+
+#upgrades .rightCol {
+  display: inline-block;
+  width: 45%;
+  font-size: 0.75em;
+  text-align: left;
+}
+#upgrades .leftCol button {
+  align-items: center;
+  margin: auto;
+  background: #05D36B;
+  padding: 10px;
+  width: fit-content;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+#upgrades .leftCol button i {
+  padding-right: 10px;
+  font-size: 1em;
+}
+
 #buttons {
   grid-area: buttons;
 }
