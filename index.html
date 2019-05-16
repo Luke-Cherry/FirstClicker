@@ -3,13 +3,16 @@
 
 <html>
 
-<link href="style.css?version=1.03" rel="stylesheet" type="text/css">
+<link href="style.css?version=1.04" rel="stylesheet" type="text/css">
+
 
 <head>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Chewy" rel="stylesheet">
   <link href="favicon.ico" rel="icon" type="image/x-icon" />
   <title>A Ducks Life</title>
-  
-  <!-- Global site tag (gtag.js) - Google Analytics -->
+
+   <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-138147619-1"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -19,118 +22,170 @@
   gtag('config', 'UA-138147619-1');
 </script>
 
-
 </head>
 
-<div class="main">
-<div class="container">
-<header>
-<h1>A Ducks Life</h1>
-</header>
+<div class="navbar">
 
+  <img src="pics/duck1.png" alt="Duck Logo">
+  <h1>A Ducks Life</h1>
+    
+  <div class="dropdown">
+    <button class="dropdownbtn">
+      <i class="fa fa-list-ul"></i>
+    </button>
+    <div class="dropdown-content">
+      <a href="#" onclick="goHome()">Home</a>
+      <a href="#" onclick="goStats()">Stats</a>
+      <a href="#" onclick="goOptions()">Options</a>
+      <a href="#">Help</a>
 
-<div id = "chooseDuck">
-<div class = "row">
-        <div class="column">
-                <img id="duck1" src="pics/duck1.png" alt="YellowDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(0)">
-              </div>
-              <div class="column">
-                <img id="duck2" src="pics/duck2.png" alt="BlueDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(1)">
-              </div>
-              <div class="column">
-                <img id="duck3" src="pics/duck3.png" alt="PinkDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(2)">
-              </div>
-</div>
-<div class = "row">
-    <div class="column1">
-            <p class="ddesctext" style="margin: 0;">This duck is a nice duck</p>
-          </div>
-          <div class="column1">
-            <p class="ddesctext" style="margin: 0;">This duck is friendly</p>
-          </div>
-          <div class="column1">
-            <p class="ddesctext" style="margin: 0;">This duck is looking for a forever home</p>
-          </div>
+    </div>
+  </div>
 </div>
 
-<p>After years of wanting your very own pet duck the day has finally come.</p>
-<p>You arrive at the pet store and there are 3 little ducklings which are desperate for a new owner.</p>
-<p><b>Please choose your duck!</b></p>
+
+<div id = "chooseDuck" style="display:block">
+  <h2>Welcome to A Ducks Life!</h2>
+  <h3>One night the biggest storm of the century hits your village, the next day three little ducklings are found stranded without a mother, you are able to adopt one of these ducklings. Please choose below.</h3>
+  
+  <div id="duckCards">
+
+    <div class="card" onclick="duckChoose(0)">
+      <img src="pics/duck1.png" alt="Avatar" style="width:100%">
+      <div class="container">
+        <h4><b>Yellow Duck</b></h4> 
+        <p>This duck is a nice duck</p> 
+      </div>
+    </div>
+
+    <div class="card" onclick="duckChoose(1)">
+        <img src="pics/duck2.png" alt="Avatar" style="width:100%">
+        <div class="container">
+          <h4><b>Blue Duck</b></h4> 
+          <p>This duck is friendly</p> 
+        </div>
+      </div>
+
+      <div class="card" onclick="duckChoose(2)">
+          <img src="pics/duck3.png" alt="Avatar" style="width:100%">
+          <div class="container">
+            <h4><b>Pink Duck</b></h4> 
+            <p>This duck is looking for a forever home</p> 
+          </div>
+        </div>
+
+  </div>  
 </div>
 
-  <div id = "mainDuck" style="display:none">
-      <p id="dName2" style="display:none;">Test</p>
-      <img id="mainDuckImg" src="pics/duck1.png" style="cursor:pointer;">
-      <button id="sellEggs" class="button" onclick="sellEggs()" title="Test">Sell Eggs (£0.00)</button>
-      <label for="sellEggs" id="sellEggsl">Total eggs sold: 0</label>
+<div id="flexGrid">
+
+<div id = "mainDuck" style="display:none">
+    <p id="dName2" style="display:none;">Test</p>
+    <img id="mainDuckImg" src="pics/duck1.png" style="cursor:pointer;">
+</div>
+
+<div id="nameDuck" style="display:none">
+    <p>You are now the proud owner of your new little friend.</p>
+    <p>She didn't come with a name, what would you like to call her?</p>
+        <input type="text" name="dname" id="dName">
+        <input type="button" value="Choose" onclick="duckNamed()">
+</div>
+
+<div id ="eggInfo" style="display:none">
+  <button id="sellEggs" class="button" onclick="sellEggs()" title="Test">Sell Eggs (£0.00)</button>
+  
+  <p id="totalEggs">Total eggs: 0/10</p>
+  <progress value = "0" max = "100" id="totalEggsProg"></progress>
+
   </div>
 
-  <div id="nameDuck" style="display:none">
-      <p>You are now the proud owner of your new little friend.</p>
-      <p>She didn't come with a name, what would you like to call her?</p>
-          <input type="text" name="dname" id="dName">
-          <input type="button" value="Choose" onclick="duckNamed()">
+
+<div id ="upgrades" style="display:none">
+  <div id="cash">
+    <i class="fas fa-money-bill-wave"></i>
+    <p id="totalCash">Cash: £0.00</p>
   </div>
 
+  <h1>Upgrades</h1>
+  <h2>Available:</h2>
+  
+  <div class="row">
+    <div class="leftCol">
+      <button id="upgradeStorageU" onclick="upgradeStorageU()"><i class="fas fa-box"></i> Storage (£0.50)</button>
+    </div>
+    <div class="rightCol">
+      <p>Unlocks more storage for your eggs so you can store more before you have to sell them.</p>
+    </div>
+  </div>
 
-<div id = "eggInfo">
-<p id="totalCash">Cash: £0.00</p>
-<p id="totalEggs">Total eggs: 0/10</p>
-<progress value = "0" max = "100" id="totalEggsProg"></progress>
+  <div class="row">
+    <div class="leftCol">
+      <button id="eggClickersU" onclick="eggClickersU()"><i class="fab fa-get-pocket"></i> Add Pockets (£1.00)</button>
+    </div>
+    <div class="rightCol">
+      <p>Tailor in some extra pockets to your trousers so you can collect more eggs with each click.</p>
+    </div>
+  </div>
 
-<p id="eggPrice">Price per egg: £0.10</p>
-<br>
+  <div class="row">
+    <div class="leftCol">
+      <button id="eggCollectorU" onclick="eggCollectorU()"><i class="fas fa-user-friends"></i> Hire Staff (£5.00)</button>
+    </div>
+    <div class="rightCol">
+      <p>Unlocks ability to hire staff which help pickup the eggs automatically, pickups one egg each second.</p>
+    </div>
+  </div>
 
-</div>
+  <div class="row">
+    <div class="leftCol">
+      <button id="upgradeEggU" onclick="upgradeEggU()"><i class="fas fa-paint-brush"></i> Polish Eggs (£50.00)</button>
+    </div>
+    <div class="rightCol">
+      <p>Unlocks polishing of eggs allowing you to improve the value of each egg, quickly increasing your income.</p>
+    </div>
+  </div>
+  
+  </div>
+
 
 
 <div id ="buttons" style="display:none">
 
-  <button id="eggClickers" class="button" onclick="eggClickers()">Eggs per click (£1.00) (0)</button> 
-  <label for="eggClickers" id="eggClickersl">Eggs per click: 0</label>
+  <h1>Current</h1>
+  <h2>Upgrades:</h2>
+ 
+  <button id="upgradeStorage" class="button" onclick="upgradeStorage()" style="display:none">Upgrade Storage to [20] (£1.00)</button> 
 
-  <span class="tooltip">
-    <button id="eggCollector" class="button" onclick="eggCollectorOn()">Egg Collector (£10.00) (0)</button> 
-    <span class="tooltiptext">Automatically collects 1 egg a second.</span> 
-  </span>
-    <label for="eggCollector" id="eggCollectorl">Eggs collected per second: 0</label>
-
-
-</div>
-
-<div id ="upgrades" style="display:none">
-  <p id="upgradeText"><u>Upgrades:</u></p>
+  <button id="eggClickers" class="button" onclick="eggClickers()" style="display:none">Eggs per click (£1.00) (0)</button> 
   
-  <span class="tooltip">
-    <button id="upgradeStorage" class="button" onclick="upgradeStorage()">Upgrade Storage to [20] (£1.00)</button> 
-    <span class="tooltiptext">Upgrade your Ducks house to store more eggs.</span>
-  </span>
+  <button id="eggCollector" class="button" onclick="eggCollectorOn()" style="display:none">Egg Collector (£10.00) (0)</button> 
+  
+  <button id="upgradeEgg" class="button" onclick="upgradeEgg()" style="display:none">Improve Egg Value (£100.00)</button> 
 
-  <span class="tooltip">
-    <button id="upgradeEgg" class="button" onclick="upgradeEgg()">Improve Egg Value (£100.00)</button> 
-    <span class="tooltiptext">Increase your ducks happiness causing eggs laid to increase in value (+£0.05)</span>
-  </span>
+  <h3>Stats:</h3>
+  <p id="eggClickersl"> Eggs per click: 0</p>
+  <p id="eggCollectorl">Eggs collected per second: 0</p>
+  <p id="eggPrice">Price per egg: £0.10</p>
 </div>
 
-<div id ="stats" style="display:none">
-  <p id="upgradeText"><u>Stats:</u></p>
-  <p id="lifetimeCash">Lifetime cash: £0.00</p>
+</div>
+
+<div id="stats" style="display:none">
+  <div id="statsContainer">
+    <p for="sellEggs" id="sellEggsl">Total eggs sold: 0</p>
+    <p id="lifetimeCash">Lifetime cash: £0.00</p>
+  </div>
+</div>
+
+<div id="developerOptions" style="display:none">
+  <div id="optionsContainer">
+    <button id="devGetCash" onclick="devGetCash()">Get Cash (£100)</button>
+    <button id="devsaveGame" onclick="devSaveGame()">Save Game</button>
+    <button id="devautosaveGame" onclick="devautoSave()">Autosave (ON)</button>
+    <button id="devReset" onclick="devReset()">Reset</button>
+  </div>
 </div>
 
 
-<div id="developerOptions">
-  <p>Game work in progress, thanks for trying it out!</p>
-  <p>Currently only coded in are unlimited egg collectors which increase in price, storage up to 2500</p>  
-  <button id="devGetCash" onclick="devGetCash()">Get Cash (£100)</button>
-  <button id="devsaveGame" onclick="devSaveGame()">Save Game</button>
 
-  <button id="devautosaveGame" onclick="devautoSave()">Autosave (ON)</button>
-  <button id="devReset" onclick="devReset()">Reset</button>
-</div>
-
-
-</div>
-</div>
-<script src="clicker.js?version=1.03"></script>
-</html>
-
+<script src="clicker.js?version=1.04"></script>
