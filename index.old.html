@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+
+<html>
+
+<link href="style.css?version=1.03" rel="stylesheet" type="text/css">
+
+<head>
+  <link href="favicon.ico" rel="icon" type="image/x-icon" />
+  <title>A Ducks Life</title>
+  
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-138147619-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-138147619-1');
+</script>
+
+
+</head>
+
+<div class="main">
+<div class="container">
+<header>
+<h1>A Ducks Life</h1>
+</header>
+
+
+<div id = "chooseDuck">
+<div class = "row">
+        <div class="column">
+                <img id="duck1" src="pics/duck1.png" alt="YellowDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(0)">
+              </div>
+              <div class="column">
+                <img id="duck2" src="pics/duck2.png" alt="BlueDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(1)">
+              </div>
+              <div class="column">
+                <img id="duck3" src="pics/duck3.png" alt="PinkDuck" style="width:100%; cursor:pointer;" onclick="duckChoose(2)">
+              </div>
+</div>
+<div class = "row">
+    <div class="column1">
+            <p class="ddesctext" style="margin: 0;">This duck is a nice duck</p>
+          </div>
+          <div class="column1">
+            <p class="ddesctext" style="margin: 0;">This duck is friendly</p>
+          </div>
+          <div class="column1">
+            <p class="ddesctext" style="margin: 0;">This duck is looking for a forever home</p>
+          </div>
+</div>
+
+<p>After years of wanting your very own pet duck the day has finally come.</p>
+<p>You arrive at the pet store and there are 3 little ducklings which are desperate for a new owner.</p>
+<p><b>Please choose your duck!</b></p>
+</div>
+
+  <div id = "mainDuck" style="display:none">
+      <p id="dName2" style="display:none;">Test</p>
+      <img id="mainDuckImg" src="pics/duck1.png" style="cursor:pointer;">
+      <button id="sellEggs" class="button" onclick="sellEggs()" title="Test">Sell Eggs (£0.00)</button>
+      <label for="sellEggs" id="sellEggsl">Total eggs sold: 0</label>
+  </div>
+
+  <div id="nameDuck" style="display:none">
+      <p>You are now the proud owner of your new little friend.</p>
+      <p>She didn't come with a name, what would you like to call her?</p>
+          <input type="text" name="dname" id="dName">
+          <input type="button" value="Choose" onclick="duckNamed()">
+  </div>
+
+
+<div id = "eggInfo">
+<p id="totalCash">Cash: £0.00</p>
+<p id="totalEggs">Total eggs: 0/10</p>
+<progress value = "0" max = "100" id="totalEggsProg"></progress>
+
+<p id="eggPrice">Price per egg: £0.10</p>
+<br>
+
+</div>
+
+
+<div id ="buttons" style="display:none">
+
+  <button id="eggClickers" class="button" onclick="eggClickers()">Eggs per click (£1.00) (0)</button> 
+  <label for="eggClickers" id="eggClickersl">Eggs per click: 0</label>
+
+  <span class="tooltip">
+    <button id="eggCollector" class="button" onclick="eggCollectorOn()">Egg Collector (£10.00) (0)</button> 
+    <span class="tooltiptext">Automatically collects 1 egg a second.</span> 
+  </span>
+    <label for="eggCollector" id="eggCollectorl">Eggs collected per second: 0</label>
+
+
+</div>
+
+<div id ="upgrades" style="display:none">
+  <p id="upgradeText"><u>Upgrades:</u></p>
+  
+  <span class="tooltip">
+    <button id="upgradeStorage" class="button" onclick="upgradeStorage()">Upgrade Storage to [20] (£1.00)</button> 
+    <span class="tooltiptext">Upgrade your Ducks house to store more eggs.</span>
+  </span>
+
+  <span class="tooltip">
+    <button id="upgradeEgg" class="button" onclick="upgradeEgg()">Improve Egg Value (£100.00)</button> 
+    <span class="tooltiptext">Increase your ducks happiness causing eggs laid to increase in value (+£0.05)</span>
+  </span>
+</div>
+
+<div id ="stats" style="display:none">
+  <p id="upgradeText"><u>Stats:</u></p>
+  <p id="lifetimeCash">Lifetime cash: £0.00</p>
+</div>
+
+
+<div id="developerOptions">
+  <p>Game work in progress, thanks for trying it out!</p>
+  <p>Currently only coded in are unlimited egg collectors which increase in price, storage up to 2500</p>  
+  <button id="devGetCash" onclick="devGetCash()">Get Cash (£100)</button>
+  <button id="devsaveGame" onclick="devSaveGame()">Save Game</button>
+
+  <button id="devautosaveGame" onclick="devautoSave()">Autosave (ON)</button>
+  <button id="devReset" onclick="devReset()">Reset</button>
+</div>
+
+
+</div>
+</div>
+<script src="clicker.js?version=1.03"></script>
+</html>
+

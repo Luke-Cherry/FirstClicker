@@ -15,7 +15,11 @@ var defaultValues = {
     eggcollectorNum: 0,
     eggcollectorCost: 10,
     click_increment: 1,
-    click_increment_cost: 1
+    click_increment_cost: 1,
+    unlockStorage: false,
+    unlockClick: false,
+    unlockCollector: false,
+    unlockEggcost: false
 };
 
 //Creates a NodeList with DOM of all elements on website that has a ID tag.
@@ -55,7 +59,13 @@ var gameData = {
     eggcollectorCost: 10,
 
     click_increment: 1,
-    click_increment_cost: 1
+    click_increment_cost: 1,
+
+//Upgrades Unlocked
+    unlockStorage: false,
+    unlockClick: false,
+    unlockCollector: false,
+    unlockEggcost: false
 };
 
 var duckImages = ["pics\\duck1.png", "pics\\duck2.png", "pics\\duck3.png"];
@@ -98,6 +108,10 @@ if (savedGame !== null) {
   if (typeof gameData.click_increment_cost === "undefined") gameData.click_increment_cost = defaultValues.click_increment_cost;
   if (typeof gameData.cost_increase_num === "undefined") gameData.cost_increase_num = defaultValues.cost_increase_num;
   if (typeof gameData.autosave === "undefined") gameData.autosave = defaultValues.autosave;
+  if (typeof gameData.unlockStorage === "undefined") gameData.unlockStorage = defaultValues.unlockStorage;
+  if (typeof gameData.unlockClick === "undefined") gameData.unlockClick = defaultValues.unlockClick;
+  if (typeof gameData.unlockCollector === "undefined") gameData.unlockCollector = defaultValues.unlockCollector;
+  if (typeof gameData.unlockEggcost === "undefined") gameData.unlockEggcost = defaultValues.unlockEggcost;
   
   duckChoose(gameData.duckchosen);
   duckNamed(gameData.duckName);
@@ -132,7 +146,7 @@ function duckNamed (dName2) {
     element["mainDuckImg"].setAttribute("onClick", "duckClicked()");
     element["buttons"].style.display = "block";
     element["upgrades"].style.display = "block";
-    element["stats"].style.display = "block";
+    element["eggInfo"].style.display = "block";
     duckUpdate();
 }
 
@@ -171,23 +185,76 @@ function duckUpdate () {
     
     duckstoragebUpdate();
     buttonUpdate();
+    unlockUpdate();
 }
 
 //Updates colour of buttons if you can purchase the next upgrade
-function buttonUpdate () {
+function buttonUpdate() {
     //Storage button updater
     if (gameData.currentStorage != storageNums.length) {
-        setBackgroundIf("upgradeStorage", gameData.cash >= storageNums[gameData.currentStorage].cost, "#4CAF50", "#af4c4c");
+        setBackgroundIf("upgradeStorage", gameData.cash >= storageNums[gameData.currentStorage].cost, "#05D36B", "#af4c4c");
     }
-    setBackgroundIf("eggCollector", gameData.cash >= gameData.eggcollectorCost, "#4CAF50", "#af4c4c");
-    setBackgroundIf("eggClickers", gameData.cash >= gameData.click_increment_cost, "#4CAF50", "#af4c4c");
-    setBackgroundIf("upgradeEgg", gameData.cash >= gameData.cost_increase_cost, "#4CAF50", "#af4c4c");
+    setBackgroundIf("eggCollector", gameData.cash >= gameData.eggcollectorCost, "#05D36B", "#af4c4c");
+    setBackgroundIf("eggClickers", gameData.cash >= gameData.click_increment_cost, "#05D36B", "#af4c4c");
+    setBackgroundIf("upgradeEgg", gameData.cash >= gameData.cost_increase_cost, "#05D36B", "#af4c4c");
 }
 
 //Function that takes element, condition and colours and sets the element to that colour
 function setBackgroundIf(elementName, condition, trueColour, falseColour){
     element[elementName].style.backgroundColor = condition ? trueColour : falseColour; 
   }
+
+//Checks if upgrade has been unlocked, if so it shows the upgrade element.
+function unlockUpdate() {
+    if (gameData.unlockStorage === true) {
+        element["upgradeStorage"].style.display = "inline-block";
+        element["upgradeStorageU"].classList.add("disabled");
+    }
+    if (gameData.unlockClick === true) {
+        element["eggClickers"].style.display = "inline-block";
+        element["eggClickersU"].classList.add("disabled");
+    }
+    if (gameData.unlockCollector === true) {
+        element["eggCollector"].style.display = "inline-block";
+        element["eggCollectorU"].classList.add("disabled");
+    }
+    if (gameData.unlockEggcost === true) {
+        element["upgradeEgg"].style.display = "inline-block";
+        element["upgradeEggU"].classList.add("disabled");
+    }
+}
+
+function upgradeStorageU() {
+    if (gameData.cash >= 0.5) {
+      gameData.unlockStorage = true;
+      gameData.cash -= 0.5;
+      duckUpdate();
+    }
+}
+
+function eggClickersU() {
+    if (gameData.cash >= 1) {
+      gameData.unlockClick = true;
+      gameData.cash -= 1;
+      duckUpdate();
+    }
+}
+
+function eggCollectorU() {
+    if (gameData.cash >= 5) {
+      gameData.unlockCollector = true;
+      gameData.cash -= 5;
+      duckUpdate();
+    }
+}
+
+function upgradeEggU() {
+    if (gameData.cash >= 50) {
+      gameData.unlockEggcost = true;
+      gameData.cash -= 50;
+      duckUpdate();
+    }
+}
 
 //Separate function that checks to see if storage upgrade has reached its max - separate to not clutter the duckUpdate function
 function duckstoragebUpdate () {
@@ -305,3 +372,33 @@ var saveGameLoop = window.setInterval(function() {
     }
   }, 15000);
 
+
+//NAVBAR - Shows and hides various elements based on button pressed
+function goHome() {
+    if (element["flexGrid"].style.display === "none") {
+        element["flexGrid"].style.display = "grid";
+        element["stats"].style.display = "none";
+        element["developerOptions"].style.display = "none";
+        if (gameData.duckchosen === 0) {
+            element["chooseDuck"].style.display = "block";
+        }
+    } 
+}
+
+function goStats() {
+    if (element["stats"].style.display === "none") {
+        element["stats"].style.display = "block";
+        element["flexGrid"].style.display = "none"   
+        element["chooseDuck"].style.display = "none";
+        element["developerOptions"].style.display = "none";
+    }
+}
+
+function goOptions() {
+    if (element["developerOptions"].style.display === "none") {
+        element["developerOptions"].style.display = "block";
+        element["flexGrid"].style.display = "none"
+        element["chooseDuck"].style.display = "none";
+        element["stats"].style.display = "none";
+    }
+}

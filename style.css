@@ -1,222 +1,385 @@
-  body, html {
-    background-color: #d5e1df;
-  }
-  
-  p {
-    font-family: Verdana,sans-serif;
-  }
-
-  h1 {
-    font-family: Verdana,sans-serif;
-  }
-  
-  .row {
-    display: flex;
-    padding-right: 15%;
-    padding-left: 15%;
-    font-size: 1vw;
-  }
-
-  
-  .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto auto 1fr;
-    grid-gap: 10px;
-    grid-template-areas: 
-      "header header header"
-      "mainDuck buttons eggInfo"
-      "upgrades stats footer";
-  }
-
-
-  .column {
-    flex: 33.33%;
-    padding: 5px;
-    border-style: solid;
-    border-radius: 5px;
-    margin: 10px;
-    margin-bottom: 0px;
-    background-color: white;
-  }
-
-  .column1 {
-    flex: 33.33%;
-    padding: 5px;
-    border-style: solid;
-    border-radius: 5px;
-    margin: 10px;
-    margin-top: 5px;
-    height: fit-content;
-    background-color: white;
-  }
-
-
-  header {
-      text-align: center;
-      grid-area: header;
-      background-color: #deeaee;
-  }
-
-  #chooseDuck {
-      text-align: center;
-      grid-area: 2 / 1 / 3 / 3;
-  }
-
-  #mainDuckImg {
-    border-style: dashed;
-    border-radius: 10px;
-    padding: 10px;
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-    display: block;
-    background-color: white;
-  }
-
-  #mainDuckImg:active {
-    animation-name: mainDuck;
-    animation-duration: 0.1s;
-  }
-
-  @keyframes mainDuck {
-    0%   {filter: blur(0px)}
-    50% {filter: blur(3px)}
-  }
-
-  #mainDuck {
-    grid-area: mainDuck;
-    position: relative;
-  }
-
-  #dName2 {
-    width: fit-content;
-    display: block;
-    text-align: center;
-    font-weight: bold;
-    font-size: 1em;
-    position: absolute;
-    left: 50px;
-    top: -5px;
+html, body {
+  font-family: Verdana,sans-serif;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-  #nameDuck {
-    text-align: center;
-    grid-area: buttons;
-  }
+body {
+  background-color: #B2DEF9;
+}
 
-  #eggInfo {
-    margin-right: auto;
-    margin: 10px auto auto auto;
-    border-style: dashed;
-    width: 70%;
-    text-align: center;
-    font-weight: bold;
-    grid-area: eggInfo;
-    background-color: white;
-  }
+.navbar {
+  overflow: hidden;
+  background-color: #57b1e8;
+  height: 100px;
+}
 
-  #totalEggs {
-    margin-bottom: 0px;
-  }
+.navbar h1 {
+  float: left;
+  font-family: 'Chewy', cursive;
+  color: white;
+  font-size: 2.75em;
+  letter-spacing: 5px;
+  margin: 20px 0px 0px 0px;
+}
 
-  #developerOptions {
-    grid-area: footer;
-    border: 1px solid black;
-  }
-
-  .button {
-    background-color: #4CAF50;
-    border: 1px solid;
-    color: white;
-    padding: 3% 3%;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1vw;
-    width: 60%;
-  }
-
-  #buttons {
-    padding: 10px;
-    border-style: solid;
-    border-radius: 5px;
-    background-color: white;
-    text-align: center;
-  }
-
-  #upgrades {
-    padding: 10px;
-    border-style: solid;
-    border-radius: 5px;
-    background-color: white;
-    text-align: center;
-    width: 80%;
-    margin: 0 auto;
-  }
-
-  #stats {
-    padding: 10px;
-    border-style: solid;
-    border-radius: 5px;
-    background-color: white;
-    text-align: center;
-  }
+.navbar img {
+  height: 100px;
+  width: 100px;
+  float: left;
+  padding: 0px 20px;
+  transform: scaleX(-1);
+}
 
 
+.dropdown {
+  float: right;
+  overflow: hidden;
+  margin-top: 15px;
+  margin-right: 20px;
+}
+
+.dropdown .dropdownbtn {
+  font-size: 40px;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  background-color: #017aae;
+  padding: 10px 14px;
+  outline: none;
+}
+
+.navbar a:hover {
+  background-color: #017aae;
+}
+
+.dropdown:hover .dropdownbtn {
+  background-color: #57b1e8;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  right: 20px;
+  top: 75px;
+}
+
+.dropdown-content a {
+  font-size: 1.25em;
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  margin-top: 0px;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+#chooseDuck h2 {
+  text-align: center;
+  width: 60%;
+  margin: 15px auto;
+}
+
+#chooseDuck h3 {
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  font-weight: 100;
+}
+
+#duckCards {
+  width: 60%;
+  margin: auto;
+  display: flex;
+}
+
+#duckCards img {
+  background-color: white;
+}
+
+#duckCards .card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 40%;
+  margin: 10px;
+  background-color: #f7f7f7;
+}
+
+#duckCards .card:hover {
+  box-shadow: 0 8px 16px 7px rgba(0,0,0,0.2);
+}
+
+#duckCards .container {
+  padding: 2px 16px;
+}
+
+#flexGrid {
+  display: grid;
+  grid-template-columns: 1fr 350px 1fr;
+  grid-template-rows: auto auto;
+  grid-gap: 10px;
+  grid-template-areas: 
+    "buttons mainDuck upgrades"
+    "buttons eggInfo upgrades";
+  margin-top: 20px;
+}
+
+#mainDuck {
+  grid-area: mainDuck;
+  margin: auto;
+  position: relative;
+}
+
+#mainDuck img {
+  background-color: white;
+  max-width: 250px;
+  border-radius: 10px;
+}
+
+#mainDuck img:hover {
+  box-shadow: 0 8px 16px 0px rgba(0,0,0,0.2);
+}
+
+#mainDuck img:active {
+  box-shadow: 0 8px 16px 7px rgba(0,0,0,0.2);
+}
+
+#nameDuck {
+  grid-area: eggInfo;
+}
+
+#dName2 {
+  position: absolute;
+  bottom: -5px;
+  left: 12px;
+}
+
+#eggInfo {
+  grid-area: eggInfo;
+  text-align: center;
+}
+
+#eggInfo button {
+  width: 230px;
+  margin: auto;
+  display: block;
+  background-color: white;
+  border: 4px solid;
+  text-align: center;
+  padding: 10px 5px;
+  text-decoration: none;
+  font-size: 1.3em;
+  font-weight: 900;
+  border-radius: 5px;
+}
+
+#eggInfo button:hover {
+  box-shadow: 0 4px 8px 0px rgba(0,0,0,0.2);
+}
+
+#upgrades {
+  grid-area: upgrades;
+  border: solid yellow;
+  border-width: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+}
+
+#upgrades h1 {
+  margin: 5px;
+  color: #25a8f9;
+}
+
+#upgrades h2 {
+  margin: 5px;
+  color: #57b1e8;
+  border-bottom: solid;
+}
+
+#upgrades .row {
+  display: flex;
+}
+
+#upgrades .leftCol {
+  display: block;
+  width: 30%;
+  margin-top: 18px;
+}
+
+#upgrades .rightCol {
+  display: block;
+  width: 70%;
+  font-size: 0.75em;
+  text-align: left;
+  white-space: normal;
+  padding: 0px 10px;
+}
+
+#upgrades .leftCol button {
+  align-items: center;
+  margin: auto;
+  background: #FFD256;
+  padding: 5px;
+  width: fit-content;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+#upgrades .leftCol button i {
+  font-size: 1em;
+  color: #846205;
+}
+
+#buttons {
+  grid-area: buttons;
+  border: solid #57b1e8;
+  border-width: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  text-align: center;
+}
 
 
-  label {
-    font-family: Verdana,sans-serif;
-    font-size: 1vw;
-    display: block;
-    margin-bottom: 10px;
-  }
+#buttons h1 {
+  margin: 5px;
+  color: #25a8f9;
+}
 
-  #totalCash {
-    font-size: 1.5em;
-    background-color: #deeaee;
-    padding: 10px 2px;
-    margin: 5px;
-  }
+#buttons h2 {
+  margin: 5px;
+  color: #57b1e8;
+  border-bottom: solid;
+}
+
+#buttons h3 {
+  margin: 5px;
+  color: #57b1e8;
+  border-bottom: solid;
+}
+
+#buttons button {
+  align-items: center;
+  background: rgb(175, 76, 76);
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  font-size: 1em;
+  margin: 10px 0px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 4px 8px 0px;
+}
+
+#buttons p {
+  font-size: 0.75em;
+  text-align: center;
+  white-space: normal;
+  padding: 0px 10px;
+  margin: 0px;
+}
 
 
-  #upgradeText {
-    margin: 0 0 5px 0;
-  }
 
-  .tooltip {
-    position: relative;
-  }
-  
-  .tooltip .tooltiptext {
-    visibility: hidden;
-    opacity: 0;
-    transition: opacity 0.3s;
-    width: 70%;
-    background-color: #deeaee;
-    color: black;
-    text-align: center;
-    border-radius: 6px;
+
+#cash {
+  display: flex;
+    align-items: center;
+    margin: auto;
+    background: #05D36B;
     padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 190%;
-    left: 50%;
-    margin-left: -35%;
-  }
-  
-  .tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-  }
+    width: fit-content;
+    border-radius: 15px;
+}
 
-  #sellEggs {
-    background-color: #4CAF50;
-    border: 1px solid;
-    color: white;
-    padding: 3% 3%;
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.4vw;
-    width: 95%;
+#cash i {
+  color: #006733;
+  padding: 10px 30px 10px 10px;
+  font-size: 2em;
+}
+
+#cash p {
+  font-size: 1.5em;
+  margin: 10px 30px 10px 10px;
+  color: #006733;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s;
+  width: 70%;
+  background-color: #deeaee;
+  color: black;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 190%;
+  left: 50%;
+  margin-left: -35%;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+#statsContainer {
+  border: solid #57b1e8;
+  border-width: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  width: 40%;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#optionsContainer {
+  border: solid #57b1e8;
+  border-width: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  width: 40%;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#optionsContainer button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px;
+  width: 60%;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  opacity: 0.65;
+  filter: alpha(opacity=65);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
