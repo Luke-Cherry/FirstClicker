@@ -174,7 +174,7 @@ function duckUpdate () {
 }
 
 //Updates colour of buttons if you can purchase the next upgrade
-function buttonUpdate () {
+function buttonUpdate() {
     //Storage button updater
     if (gameData.currentStorage != storageNums.length) {
         setBackgroundIf("upgradeStorage", gameData.cash >= storageNums[gameData.currentStorage].cost, "#4CAF50", "#af4c4c");

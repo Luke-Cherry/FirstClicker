@@ -181,7 +181,7 @@ body {
   text-align: center;
   padding: 10px 5px;
   text-decoration: none;
-  font-size: 1.5em;
+  font-size: 1.3em;
   font-weight: 900;
   border-radius: 5px;
 }
@@ -223,16 +223,17 @@ body {
 #upgrades .rightCol {
   display: block;
   width: 70%;
-  font-size: 1em;
+  font-size: 0.75em;
   text-align: left;
   white-space: normal;
+  padding: 0px 10px;
 }
 
 #upgrades .leftCol button {
   align-items: center;
   margin: auto;
   background: #FFD256;
-  padding: 10px;
+  padding: 5px;
   width: fit-content;
   border-radius: 5px;
   font-size: 1em;
@@ -262,6 +263,30 @@ body {
   margin: 5px;
   color: #57b1e8;
   border-bottom: solid;
+}
+
+#buttons h3 {
+  margin: 5px;
+  color: #57b1e8;
+  border-bottom: solid;
+}
+
+#buttons button {
+  align-items: center;
+  background: #FFD256;
+  padding: 10px;
+  width: 80%;
+  border-radius: 5px;
+  font-size: 1em;
+  margin: 10px 0px;
+}
+
+#buttons p {
+  font-size: 0.75em;
+  text-align: center;
+  white-space: normal;
+  padding: 0px 10px;
+  margin: 0px;
 }
 
 
@@ -313,4 +338,16 @@ body {
 .tooltip:hover .tooltiptext {
   visibility: visible;
   opacity: 1;
+}
+
+#statsContainer {
+  border: solid #57b1e8;
+  border-width: 15px;
+  border-radius: 20px;
+  padding: 10px;
+  width: 40%;
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  text-align: center;
 }

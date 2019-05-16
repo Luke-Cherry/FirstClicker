@@ -31,7 +31,7 @@
 </div>
 
 
-<div id = "chooseDuck">
+<div id = "chooseDuck" style="display:none">
   <h2>Welcome to A Ducks Life!</h2>
   <h3>One night the biggest storm of the century hits your village, the next day three little ducklings are found stranded without a mother, you are able to adopt one of these ducklings. Please choose below.</h3>
   
@@ -64,7 +64,7 @@
   </div>  
 </div>
 
-<div id="flexGrid">
+<div id="flexGrid" style="display:none">
 
 <div id = "mainDuck" style="display:none">
     <p id="dName2" style="display:none;">Test</p>
@@ -80,12 +80,10 @@
 
 <div id ="eggInfo">
   <button id="sellEggs" class="button" onclick="sellEggs()" title="Test">Sell Eggs (£0.00)</button>
-  <p for="sellEggs" id="sellEggsl">Total eggs sold: 0</p>
   
   <p id="totalEggs">Total eggs: 0/10</p>
   <progress value = "0" max = "100" id="totalEggsProg"></progress>
-  
-  <p id="eggPrice">Price per egg: £0.10</p>
+
   </div>
 
 
@@ -140,30 +138,30 @@
 
 <div id ="buttons" style="display:none">
 
-  <h1>Upgrades</h1>
-  <h2>Available:</h2>
+  <h1>Current</h1>
+  <h2>Upgrades:</h2>
+ 
+  <button id="upgradeStorage" class="button" onclick="upgradeStorage()">Upgrade Storage to [20] (£1.00)</button> 
 
   <button id="eggClickers" class="button" onclick="eggClickers()">Eggs per click (£1.00) (0)</button> 
-  <label for="eggClickers" id="eggClickersl">Eggs per click: 0</label>
-
-  <span class="tooltip">
-    <button id="eggCollector" class="button" onclick="eggCollectorOn()">Egg Collector (£10.00) (0)</button> 
-    <span class="tooltiptext">Automatically collects 1 egg a second.</span> 
-  </span>
-    <label for="eggCollector" id="eggCollectorl">Eggs collected per second: 0</label>
-
-
-  <span class="tooltip">
-      <button id="upgradeStorage" class="button" onclick="upgradeStorage()">Upgrade Storage to [20] (£1.00)</button> 
-      <span class="tooltiptext">Upgrade your Ducks house to store more eggs.</span>
-    </span>
   
-    <span class="tooltip">
-      <button id="upgradeEgg" class="button" onclick="upgradeEgg()">Improve Egg Value (£100.00)</button> 
-      <span class="tooltiptext">Increase your ducks happiness causing eggs laid to increase in value (+£0.05)</span>
-    </span>
+  <button id="eggCollector" class="button" onclick="eggCollectorOn()">Egg Collector (£10.00) (0)</button> 
+  
+  <button id="upgradeEgg" class="button" onclick="upgradeEgg()">Improve Egg Value (£100.00)</button> 
+
+  <h3>Stats:</h3>
+  <p id="eggClickersl"> Eggs per click: 0</p>
+  <p id="eggCollectorl">Eggs collected per second: 0</p>
+  <p id="eggPrice">Price per egg: £0.10</p>
 </div>
 
+</div>
+
+<div id="stats">
+  <div id="statsContainer">
+    <p for="sellEggs" id="sellEggsl">Total eggs sold: 0</p>
+    <p id="lifetimeCash">Lifetime cash: £0.00</p>
+  </div>
 </div>
 
 <button id="devReset" onclick="devReset()">Reset</button>
