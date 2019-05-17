@@ -83,7 +83,17 @@ var storageNums = [
     { cost: 104, amount: 770 },
     { cost: 190, amount: 1150 },
     { cost: 340, amount: 1700 },
-    { cost: 610, amount: 2500 }
+    { cost: 610, amount: 2500 },
+    { cost: 900, amount: 3900 },
+    { cost: 1400, amount: 6000 },
+    { cost: 2000, amount: 8800 },
+    { cost: 3000, amount: 13000 },
+    { cost: 4500, amount: 20000 },
+    { cost: 7000, amount: 30000 },
+    { cost: 10000, amount: 45000 },
+    { cost: 16000, amount: 66500 },
+    { cost: 25000, amount: 100000 },
+    { cost: 35000, amount: 150000 }
 ];
 
 //Loads GAME + Checks and updates any new variables
