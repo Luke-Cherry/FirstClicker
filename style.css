@@ -385,7 +385,6 @@ body {
 }
 
 #eggTitle {
-  width: 450px;
   float: right;
 }
 
@@ -393,6 +392,8 @@ body {
   margin-top: 27px;
   font-size: 2em;
   color: white;
+  display: inline-block;
+  margin-right: 20px;
 }
 
 #eggTitle i {
