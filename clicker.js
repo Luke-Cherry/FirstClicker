@@ -189,7 +189,7 @@ function duckUpdate () {
     
     element["sellEggs"].innerHTML = "Sell Eggs (£" + (gameData.eggs * gameData.cost).toFixed(2) + ")";
     element["sellEggsl"].innerHTML = "Total eggs sold: " + gameData.eggsSold; 
-    element["eggCounter"].innerHTML = gameData.eggsSold; 
+    element["eggCounter"].innerHTML = gameData.eggsSold.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","); 
     
     element["eggCollector"].innerHTML = "Egg Collector (£" + gameData.eggcollectorCost.toFixed(2)+ ") (" + gameData.eggcollectorNum + ")";
     element["eggCollectorl"].innerHTML = "Eggs collected per second: " + (gameData.eggcollectorNum + gameData.roboteggcollectorNum * 5);
