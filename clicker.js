@@ -264,7 +264,7 @@ function eggClickersU() {
       gameData.unlockClick = true;
       gameData.cash -= 1;
       gameData.click_increment++;
-      gameData.click_increment_cost = 1 * Math.pow(1.4, gameData.click_increment);
+      gameData.click_increment_cost = 1 * Math.pow(1.1, gameData.click_increment);
       duckUpdate();
     }
 }
@@ -284,7 +284,7 @@ function eggRobotCollectorU() {
       gameData.unlockRobotCollector = true;
       gameData.cash -= 5;
       gameData.eggcollectorNum++;
-      gameData.eggcollectorCost = 10 * Math.pow(1.1, gameData.eggcollectorNum + 1); 
+      gameData.eggcollectorCost = 10 * Math.pow(1.2, gameData.eggcollectorNum + 1); 
       duckUpdate();
     }
 }
@@ -354,7 +354,7 @@ function roboteggCollectorOn () {
     if (gameData.roboteggcollectorNum >= 0 && gameData.cash >= gameData.roboteggcollectorCost) {
         gameData.roboteggcollectorNum++;
         gameData.cash -= gameData.roboteggcollectorCost;
-        gameData.roboteggcollectorCost = 10 * Math.pow(1.3, gameData.roboteggcollectorNum + 1); 
+        gameData.roboteggcollectorCost = 10 * Math.pow(1.2, gameData.roboteggcollectorNum + 1); 
         duckUpdate();
     }
 }
@@ -364,7 +364,7 @@ function eggClickers() {
     if (gameData.click_increment_cost <= gameData.cash && gameData.click_increment < 100) {
         gameData.click_increment++;
         gameData.cash -= gameData.click_increment_cost;
-        gameData.click_increment_cost = 1 * Math.pow(1.4, gameData.click_increment);
+        gameData.click_increment_cost = 1 * Math.pow(1.1, gameData.click_increment);
         duckUpdate();
     }
 }
