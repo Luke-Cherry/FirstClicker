@@ -217,7 +217,7 @@ body {
 #upgrades .leftCol {
   display: block;
   width: 30%;
-  margin-top: 18px;
+  margin-top: 10px;
 }
 
 #upgrades .rightCol {
@@ -284,7 +284,6 @@ body {
 }
 
 #buttons p {
-  font-size: 0.75em;
   text-align: center;
   white-space: normal;
   padding: 0px 10px;

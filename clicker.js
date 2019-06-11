@@ -14,6 +14,8 @@ var defaultValues = {
     lifetimeCash: 0,
     eggcollectorNum: 0,
     eggcollectorCost: 10,
+    roboteggcollectorNum: 0,
+    roboteggcollectorCost: 15,
     click_increment: 1,
     click_increment_cost: 1,
     unlockStorage: false,
@@ -57,6 +59,9 @@ var gameData = {
 //Shows no. of eggCollectors + the cost of each eggCollector (increases with each purchase).
     eggcollectorNum: 0,
     eggcollectorCost: 10,
+
+    roboteggcollectorNum: 0,
+    roboteggcollectorCost: 15,
 
     click_increment: 1,
     click_increment_cost: 1,
@@ -114,6 +119,8 @@ if (savedGame !== null) {
   if (typeof gameData.lifetimeCash === "undefined") gameData.lifetimeCash = defaultValues.lifetimeCash;
   if (typeof gameData.eggcollectorNum === "undefined") gameData.eggcollectorNum = defaultValues.eggcollectorNum;
   if (typeof gameData.eggcollectorCost === "undefined") gameData.eggcollectorCost = defaultValues.eggcollectorCost;
+  if (typeof gameData.roboteggcollectorNum === "undefined") gameData.roboteggcollectorNum = defaultValues.roboteggcollectorNum;
+  if (typeof gameData.roboteggcollectorCost === "undefined") gameData.roboteggcollectorCost = defaultValues.roboteggcollectorCost;
   if (typeof gameData.click_increment === "undefined") gameData.click_increment = defaultValues.click_increment;
   if (typeof gameData.click_increment_cost === "undefined") gameData.click_increment_cost = defaultValues.click_increment_cost;
   if (typeof gameData.cost_increase_num === "undefined") gameData.cost_increase_num = defaultValues.cost_increase_num;
@@ -185,7 +192,9 @@ function duckUpdate () {
     element["eggCounter"].innerHTML = gameData.eggsSold; 
     
     element["eggCollector"].innerHTML = "Egg Collector (£" + gameData.eggcollectorCost.toFixed(2)+ ") (" + gameData.eggcollectorNum + ")";
-    element["eggCollectorl"].innerHTML = "Eggs collected per second: " + gameData.eggcollectorNum; 
+    element["eggCollectorl"].innerHTML = "Eggs collected per second: " + (gameData.eggcollectorNum + gameData.roboteggcollectorNum * 5);
+    
+    element["eggRobotCollector"].innerHTML = "Robot Collector (£" + gameData.roboteggcollectorCost.toFixed(2)+ ") (" + gameData.roboteggcollectorNum + ")";
     
     element["eggClickers"].innerHTML = "Eggs per click (£" + gameData.click_increment_cost.toFixed(2) + ") (" + gameData.click_increment + ")";
     element["eggClickersl"].innerHTML = "Eggs per click: "+ gameData.click_increment; 
@@ -206,6 +215,7 @@ function buttonUpdate() {
         setBackgroundIf("upgradeStorage", gameData.cash >= storageNums[gameData.currentStorage].cost, "#05D36B", "#af4c4c");
     }
     setBackgroundIf("eggCollector", gameData.cash >= gameData.eggcollectorCost, "#05D36B", "#af4c4c");
+    setBackgroundIf("eggRobotCollector", gameData.cash >= gameData.roboteggcollectorCost, "#05D36B", "#af4c4c");
     setBackgroundIf("eggClickers", gameData.cash >= gameData.click_increment_cost, "#05D36B", "#af4c4c");
     setBackgroundIf("upgradeEgg", gameData.cash >= gameData.cost_increase_cost, "#05D36B", "#af4c4c");
 }
@@ -229,6 +239,10 @@ function unlockUpdate() {
         element["eggCollector"].style.display = "inline-block";
         element["eggCollectorU"].classList.add("disabled");
     }
+    if (gameData.unlockRobotCollector === true) {
+        element["eggRobotCollector"].style.display = "inline-block";
+        element["eggRobotCollectorU"].classList.add("disabled");
+    }
     if (gameData.unlockEggcost === true) {
         element["upgradeEgg"].style.display = "inline-block";
         element["upgradeEggU"].classList.add("disabled");
@@ -237,9 +251,11 @@ function unlockUpdate() {
 
 function upgradeStorageU() {
     if (gameData.cash >= 0.5) {
-      gameData.unlockStorage = true;
-      gameData.cash -= 0.5;
-      duckUpdate();
+        gameData.unlockStorage = true;
+        gameData.storage = storageNums[gameData.currentStorage].amount;
+        gameData.cash -= 0.5;
+        gameData.currentStorage++;
+        duckUpdate();
     }
 }
 
@@ -247,6 +263,8 @@ function eggClickersU() {
     if (gameData.cash >= 1) {
       gameData.unlockClick = true;
       gameData.cash -= 1;
+      gameData.click_increment++;
+      gameData.click_increment_cost = 1 * Math.pow(1.4, gameData.click_increment);
       duckUpdate();
     }
 }
@@ -255,14 +273,29 @@ function eggCollectorU() {
     if (gameData.cash >= 5) {
       gameData.unlockCollector = true;
       gameData.cash -= 5;
+      gameData.eggcollectorNum++;
+      gameData.eggcollectorCost = 10 * Math.pow(1.1, gameData.eggcollectorNum + 1); 
+      duckUpdate();
+    }
+}
+
+function eggRobotCollectorU() {
+    if (gameData.cash >= 5) {
+      gameData.unlockRobotCollector = true;
+      gameData.cash -= 5;
+      gameData.eggcollectorNum++;
+      gameData.eggcollectorCost = 10 * Math.pow(1.1, gameData.eggcollectorNum + 1); 
       duckUpdate();
     }
 }
 
 function upgradeEggU() {
-    if (gameData.cash >= 50) {
+    if (gameData.cash >= 100) {
       gameData.unlockEggcost = true;
-      gameData.cash -= 50;
+      gameData.cash -= 100;
+      gameData.cost += 0.05;
+      gameData.cost_increase_cost = 100 * Math.pow(1.4, gameData.cost_increase_num);
+      gameData.cost_increase_num++;
       duckUpdate();
     }
 }
@@ -316,6 +349,16 @@ function eggCollectorOn () {
     console.log(gameData.eggcollectorNum);
 }
 
+//Function that turns Robot egg collector on and handles buying new egg collectors, price increases by 10 x 1.1^(no. owned)
+function roboteggCollectorOn () {
+    if (gameData.roboteggcollectorNum >= 0 && gameData.cash >= gameData.roboteggcollectorCost) {
+        gameData.roboteggcollectorNum++;
+        gameData.cash -= gameData.roboteggcollectorCost;
+        gameData.roboteggcollectorCost = 10 * Math.pow(1.3, gameData.roboteggcollectorNum + 1); 
+        duckUpdate();
+    }
+}
+
 //Increases amount of eggs on click
 function eggClickers() {
     if (gameData.click_increment_cost <= gameData.cash && gameData.click_increment < 100) {
@@ -339,14 +382,22 @@ function upgradeEgg() {
 }
 
 //Collects eggs based on how many eggCollectors you have
-function collectEggs () {
+function collectEggs() {
     if (gameData.eggs + gameData.eggcollectorNum <= gameData.storage) {
-        gameData.eggs += gameData.eggcollectorNum;
+        gameData.eggs += (gameData.eggcollectorNum);
         duckUpdate();
     } else if (gameData.eggs + gameData.eggcollectorNum > gameData.storage) {
         gameData.eggs = gameData.storage;
         duckUpdate();
     }
+    if (gameData.eggs + (gameData.roboteggcollectorNum * 5) <= gameData.storage) {
+        gameData.eggs += (gameData.roboteggcollectorNum * 5);
+        duckUpdate();
+    } else if (gameData.eggs + (gameData.roboteggcollectorNum * 5) > gameData.storage) {
+        gameData.eggs = gameData.storage;
+        duckUpdate();
+    }
+
 }
 
 
