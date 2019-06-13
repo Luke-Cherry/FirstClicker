@@ -1,7 +1,7 @@
 //Default values for the variables in gameData used for NEW game or RESET game.
 var defaultValues = {
     autosave: 1,
-    duckchosen: 0,
+    duckchosen: -1,
     duckName: "",
     eggs: 0,
     eggsSold: 0,
@@ -36,7 +36,7 @@ var gameData = {
 //Autosaves
     autosave: 1,
 //Stores data for which duck chosen [1-3], and the ducks name in String format.
-    duckchosen: 0,
+    duckchosen: -1,
     duckName: "",
 
 //Stores the no. of eggs and eggsSold = total eggs sold lifetime.
@@ -177,6 +177,48 @@ function duckClicked () {
         element["totalEggsProg"].value = 100 * (gameData.eggs/gameData.storage);
     }
     duckUpdate();
+    duckeggAnimation();
+}
+
+function duckeggAnimation () {
+    var eggDiv = document.createElement("i")
+    document.body.appendChild(eggDiv);
+    eggDiv.classList.add("eggDrop", "fas", "fa-egg");
+    var w = eggDiv.offsetWidth;
+    var posX = tempX-(w/2);
+    var posY = tempY+30;
+    eggDiv.style.left = posX+"px";
+    eggDiv.style.top = posY+"px";
+    eggDiv.style.color = selectColor(Math.floor(Math.random() * 10), 20);
+    if (Math.random() >= 0.5){
+        eggDiv.classList.add('duckegganimationLeft');
+    }else {
+        eggDiv.classList.add('duckegganimationRight');
+    }
+    eggDiv.addEventListener("animationend", function(){ 
+        eggDiv.remove();
+    });
+}
+
+document.addEventListener("mousemove",getMouseXY);
+var tempX = 0
+var tempY = 0
+function getMouseXY(e) {
+ 
+    tempX = e.pageX
+    tempY = e.pageY
+
+  // catch possible negative values in NS4
+  if (tempX < 0){tempX = 0}
+  if (tempY < 0){tempY = 0}  
+
+  return true
+
+}
+
+function selectColor(colorNum, colors){
+    if (colors < 1) colors = 1; // defaults to one color - avoid divide by zero
+    return "hsl(" + (colorNum * (360 / colors) % 360) + ",100%,50%)";
 }
 
 //Updates all BUTTONS and TEXT in the HTML, this is run every click and everytime a upgrade/autoclick event happens.
@@ -283,8 +325,8 @@ function eggRobotCollectorU() {
     if (gameData.cash >= 5) {
       gameData.unlockRobotCollector = true;
       gameData.cash -= 5;
-      gameData.eggcollectorNum++;
-      gameData.eggcollectorCost = 10 * Math.pow(1.2, gameData.eggcollectorNum + 1); 
+      gameData.roboteggcollectorNum++;
+      gameData.roboteggcollectorCost = 10 * Math.pow(1.2, gameData.eggcollectorNum + 1); 
       duckUpdate();
     }
 }
@@ -333,7 +375,7 @@ function upgradeStorage() {
 
 //Main game loop that happens every 1 second
 var mainGameLoop = window.setInterval(function() {
-    if (gameData.eggcollectorNum > 0) {
+    if (gameData.eggcollectorNum > 0 || gameData.roboteggcollectorNum > 0) {
     collectEggs();
     } 
     }, 1000);
@@ -441,8 +483,11 @@ function goHome() {
         element["flexGrid"].style.display = "grid";
         element["stats"].style.display = "none";
         element["developerOptions"].style.display = "none";
-        if (gameData.duckchosen === 0) {
+        element["help"].style.display = "none";
+        if (gameData.duckchosen === -1) {
             element["chooseDuck"].style.display = "block";
+        } else {
+            element["chooseDuck"].style.display = "none";
         }
     } 
 }
@@ -453,6 +498,8 @@ function goStats() {
         element["flexGrid"].style.display = "none"   
         element["chooseDuck"].style.display = "none";
         element["developerOptions"].style.display = "none";
+        element["help"].style.display = "none";
+        
     }
 }
 
@@ -462,5 +509,18 @@ function goOptions() {
         element["flexGrid"].style.display = "none"
         element["chooseDuck"].style.display = "none";
         element["stats"].style.display = "none";
+        element["help"].style.display = "none";
     }
 }
+
+function goHelp() {
+    if (element["help"].style.display === "none") {
+        element["help"].style.display = "block";
+        element["flexGrid"].style.display = "none"
+        element["chooseDuck"].style.display = "none";
+        element["stats"].style.display = "none";
+        element["developerOptions"].style.display = "none";
+    }
+}
+
+
