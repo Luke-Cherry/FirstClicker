@@ -301,7 +301,7 @@ body {
     margin: auto;
     background: #05D36B;
     padding: 5px;
-    width: fit-content;
+    width: max-content;
     border-radius: 15px;
 }
 
