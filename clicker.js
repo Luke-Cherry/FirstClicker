@@ -403,7 +403,7 @@ function roboteggCollectorOn () {
 
 //Increases amount of eggs on click
 function eggClickers() {
-    if (gameData.click_increment_cost <= gameData.cash && gameData.click_increment < 100) {
+    if (gameData.click_increment_cost <= gameData.cash) {
         gameData.click_increment++;
         gameData.cash -= gameData.click_increment_cost;
         gameData.click_increment_cost = 1 * Math.pow(1.1, gameData.click_increment);
